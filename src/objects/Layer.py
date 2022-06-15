@@ -17,12 +17,18 @@ class Layer:
         self.sigmoid = Functions.sigmoid(self.output)
         return self.sigmoid
 
-    def backward(self, target, learning_rate):
-        output_gradient = Functions.back_propagation_error(self.sigmoid, target)
-        weights_gradient = np.dot(self.input.T, output_gradient)
+    def backward(self, target, learning_rate, is_output=False):
+        if is_output:
+            error = self.sigmoid - target
+        else:
+            error = target
+
+        output_error = np.multiply(error, Functions.sigmoided_prime(self.sigmoid))
+
+        weights_gradient = np.dot(self.input.T, output_error)
         original_weights = copy.copy(self.weights)
 
         self.weights -= learning_rate * weights_gradient
-        self.bias -= learning_rate * output_gradient
+        self.bias -= learning_rate * output_error
 
-        return np.dot(output_gradient, original_weights.T)
+        return np.dot(output_error, original_weights.T)

@@ -9,7 +9,6 @@ class NeuralNetwork:
             self.layers.append(Layer(layers[i], layers[i + 1]))
 
     def train(self, data, prediction):
-        data_shape = data.shape
         prediction_shape = prediction.shape
 
         if data.shape[0] != prediction.shape[0]:
@@ -23,7 +22,7 @@ class NeuralNetwork:
                 input = self.layers[i].forward(input)
 
             for i in reversed(range(len(self.layers))):
-                target = self.layers[i].backward(target, 0.001)
+                target = self.layers[i].backward(target, 0.1, i == len(self.layers) - 1)
 
     def predict(self, input):
         for i in range(len(self.layers)):
@@ -32,7 +31,7 @@ class NeuralNetwork:
 
     def show(self):
         for i in range(len(self.layers)):
-            print('nweight', self.layers[i].weights)
-            print('nbias', self.layers[i].bias)
-            print('ninputs', self.layers[i].input)
-            print('noutputs', self.layers[i].output)
+            print('weight', self.layers[i].weights)
+            print('bias', self.layers[i].bias)
+            print('inputs', self.layers[i].input)
+            print('outputs', self.layers[i].output)
