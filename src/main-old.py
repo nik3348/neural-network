@@ -14,7 +14,7 @@ pdata = np.genfromtxt('data/sonar.csv', delimiter=',')
 praw = pdata[:, :-1].copy()
 ptarget = pdata[:, -1].copy()
 
-nn = NeuralNetwork([60, 30, 15, 2], True)
+nn = NeuralNetwork([60, 30, 15, 2])
 target = np.zeros(shape=(len(ttarget), 2))
 for i in range(len(ttarget)):
     # This is for classification

@@ -4,8 +4,9 @@ from src.objects.NeuralNetwork import NeuralNetwork
 
 
 MODEL = 'xor.nn'
-is_from_file = True
 EPOCHS = 10000
+is_from_file = True
+NEW = not is_from_file
 
 if is_from_file:
     try:
@@ -13,9 +14,9 @@ if is_from_file:
         with open("models/" + MODEL, "rb") as infile:
             nn = pickle.load(infile)
     except:
-        is_from_file = False
+        NEW = True
 
-if not is_from_file:
+if not is_from_file or NEW:
     nn = NeuralNetwork([2, 2, 1])
 
 data = np.array([[0, 0], [1, 0], [0, 1], [1, 1]], dtype=np.float128)
