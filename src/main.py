@@ -4,7 +4,7 @@ from src.objects.NeuralNetwork import NeuralNetwork
 
 
 MODEL = 'xor.nn'
-EPOCHS = 10000
+EPOCHS = 1
 is_from_file = True
 NEW = not is_from_file
 

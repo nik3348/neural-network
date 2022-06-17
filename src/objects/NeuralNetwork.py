@@ -16,7 +16,7 @@ class NeuralNetwork:
 
         for i in range(len(data)):
             input = np.array([data[i]])
-            target = np.array([prediction[i]]).reshape(prediction_shape[1], -1)
+            target = np.array([prediction[i]])
 
             for i in range(len(self.layers)):
                 input = self.layers[i].forward(input)
