@@ -36,6 +36,8 @@ print(prediction)
 prediction = nn.predict(np.array([[1, 1]]))
 print(prediction)
 
+nn.show()
+
 if is_from_file:
     # Serialization
     with open("models/" + MODEL, "wb") as outfile:

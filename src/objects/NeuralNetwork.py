@@ -9,8 +9,6 @@ class NeuralNetwork:
             self.layers.append(Layer(layers[i], layers[i + 1]))
 
     def train(self, data, prediction):
-        prediction_shape = prediction.shape
-
         if data.shape[0] != prediction.shape[0]:
             raise Exception('Data and prediction must have the same number of rows')
 
