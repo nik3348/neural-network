@@ -20,7 +20,7 @@ if not is_from_file or NEW:
     nn = NeuralNetwork([2, 2, 1])
 
 data = np.array([[0, 0], [1, 0], [0, 1], [1, 1]], dtype=np.float128)
-result = np.array([[0], [1], [1], [0]], dtype=np.float128)
+result = np.array([0, 1, 1, 0], dtype=np.float128)
 for x in range(EPOCHS):
     nn.train(data, result)
 
@@ -35,8 +35,6 @@ print(prediction)
 
 prediction = nn.predict(np.array([[1, 1]]))
 print(prediction)
-
-nn.show()
 
 if is_from_file:
     # Serialization

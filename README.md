@@ -9,12 +9,20 @@ To follow along you'll need Poetry to install the dependencies.
 
 - Poetry
 
-Once you have Poetry you can install the dependencies with
-
-```
+```bash
+# Once you have Poetry you can install the dependencies with
 poetry install
 ```
 
+### Running
+Running the scripts below will train and predict data.
+- First is the XOR problem where it trains on the XOR logic table
+- Second is data I got off the internet, I took a majority of the data to train and used the rest to predict with 94% accuracy if you train it enough times
+```bash
+poetry run python3 src/main.py
+# or
+poetry run python3 src/sonar.py
+```
 
 # What is a Neural Network?
 

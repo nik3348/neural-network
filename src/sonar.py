@@ -5,7 +5,7 @@ from src.objects.NeuralNetwork import NeuralNetwork
 
 
 MODEL = 'sonar.nn'
-EPOCHS = 10000
+EPOCHS = 2500
 is_from_file = True
 NEW = not is_from_file
 
@@ -34,42 +34,20 @@ if not is_from_file or NEW:
 target = np.zeros(shape=(len(ttarget), 2))
 for i in range(len(ttarget)):
     # This is for classification
-    array=np.zeros(2)
+    array = np.zeros(2)
     array[int(ttarget[i])] = 1
-    target[i]= array
+    target[i] = array
 
 for x in range(EPOCHS):
     nn.train(traw, target)
 
+accuracy = 0
 for i in range(len(praw)):
     prediction = nn.predict(np.array([praw[i]]))
-    # print(prediction)
-    print(np.argmax(prediction))
-    print(ptarget[i])
+    accuracy += np.argmax(prediction) == ptarget[i]
+print((accuracy/len(praw))*100)
 
 if is_from_file:
     # Serialization
     with open("models/" + MODEL, "wb") as outfile:
         pickle.dump(nn, outfile)
-
-# nn = NeuralNetwork([11, 11, 11, 10], True)
-# target = np.zeros(shape=(len(ttarget), 10))
-# for i in range(len(ttarget)):
-#     # This is for classification
-#     array=np.zeros(10)
-#     array[int(ttarget[i])-1] = 1
-#     target[i]= array
-
-# nn.train(traw, target)
-
-# for i in range(len(ptarget)):
-#     prediction = nn.predict(np.array([praw[i]]).T)
-#     print(np.argmax(prediction) + 1)
-#     print(ptarget[i])
-
-# prediction = nn.predict(np.array([praw[0]]).T)
-# print(prediction)
-# print(np.argmax(prediction) + 1)
-# print(ptarget[0])
-
-# print(id.extract_images('data/train-images-idx3-ubyte.gz')[0])
