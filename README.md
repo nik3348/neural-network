@@ -15,6 +15,12 @@ poetry install
 ```
 
 ### Running
+
+```bash
+# This starts a virtual env
+poetry shell
+```
+
 Running the scripts below will train and predict data.
 - First is the XOR problem where it trains on the XOR logic table
 - Second is data I got off the internet, I took a majority of the data to train and used the rest to predict with 94% accuracy if you train it enough times

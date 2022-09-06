@@ -1,5 +1,5 @@
 import numpy as np
-from src.objects.Layer import Layer
+from objects.Layer import Layer
 
 
 class NeuralNetwork:
@@ -20,7 +20,7 @@ class NeuralNetwork:
                 input = self.layers[i].forward(input)
 
             for i in reversed(range(len(self.layers))):
-                target = self.layers[i].backward(target, 0.1, i == len(self.layers) - 1)
+                target = self.layers[i].backward(target, 1, i == len(self.layers) - 1)
 
     def predict(self, input):
         for i in range(len(self.layers)):

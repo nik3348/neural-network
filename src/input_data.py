@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from matplotlib import pyplot as plt
 import gzip
 import os
 import numpy
@@ -25,7 +26,6 @@ def _read32(bytestream):
 
 def extract_images(filename):
   """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
-  print('Extracting', filename)
   with gzip.open(filename) as bytestream:
     magic = _read32(bytestream)
     if magic != 2051:
@@ -50,7 +50,6 @@ def dense_to_one_hot(labels_dense, num_classes=10):
 
 def extract_labels(filename, one_hot=False):
   """Extract the labels into a 1D uint8 numpy array [index]."""
-  print('Extracting', filename)
   with gzip.open(filename) as bytestream:
     magic = _read32(bytestream)
     if magic != 2049:
@@ -160,3 +159,8 @@ def read_data_sets(train_dir, fake_data=False, one_hot=False):
   data_sets.validation = DataSet(validation_images, validation_labels)
   data_sets.test = DataSet(test_images, test_labels)
   return data_sets
+
+
+def plot_image(arr):
+  plt.imshow(arr, cmap='gray')
+  plt.show()

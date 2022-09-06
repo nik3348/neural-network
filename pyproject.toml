@@ -7,6 +7,7 @@ authors = ["Nicholas Lai Jin Yung <nicklai88@live.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 numpy = "^1.22.4"
+matplotlib = "^3.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

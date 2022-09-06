@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
 import input_data as id
-from src.objects.NeuralNetwork import NeuralNetwork
+from objects.NeuralNetwork import NeuralNetwork
 
 
 MODEL = 'sonar.nn'

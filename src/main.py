@@ -1,6 +1,6 @@
 import numpy as np
 import pickle
-from src.objects.NeuralNetwork import NeuralNetwork
+from objects.NeuralNetwork import NeuralNetwork
 
 
 MODEL = 'xor.nn'
