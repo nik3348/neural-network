@@ -3,7 +3,9 @@ from objects.Layer import Layer
 
 
 class NeuralNetwork:
-    def __init__(self, layers: list):
+    def __init__(self, layers: list, learning_rate=1e-3, binary_regression=False):
+        self.learning_rate = learning_rate
+        self.binary_regression = binary_regression
         self.layers = []
         for i in range(len(layers) - 1):
             self.layers.append(Layer(layers[i], layers[i + 1]))
@@ -16,15 +18,17 @@ class NeuralNetwork:
             input = np.array([data[i]])
             target = np.array([prediction[i]])
 
-            for i in range(len(self.layers)):
-                input = self.layers[i].forward(input)
+            for x in range(len(self.layers)):
+                has_softmax = (not self.binary_regression) and (x == (len(self.layers) - 1))
+                input = self.layers[x].forward(input, has_softmax)
 
-            for i in reversed(range(len(self.layers))):
-                target = self.layers[i].backward(target, 1, i == len(self.layers) - 1)
+            for x in reversed(range(len(self.layers))):
+                target = self.layers[x].backward(target, self.learning_rate, (x == (len(self.layers) - 1)))
 
     def predict(self, input):
         for i in range(len(self.layers)):
-            input = self.layers[i].forward(input)
+            has_softmax = (not self.binary_regression) and (i == (len(self.layers) - 1))
+            input = self.layers[i].forward(input, has_softmax)
         return input
 
     def show(self):

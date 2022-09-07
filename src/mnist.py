@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import pyplot as plt
 import pickle
 import time
 from objects.NeuralNetwork import NeuralNetwork
@@ -6,7 +7,7 @@ from input_data import read_data_sets, plot_image
 
 
 MODEL = 'mnist.nn'
-EPOCHS = 1
+EPOCHS = 3
 is_from_file = True
 NEW = not is_from_file
 
@@ -19,7 +20,7 @@ if is_from_file:
         NEW = True
 
 if not is_from_file or NEW:
-    nn = NeuralNetwork([784, 10, 10])
+    nn = NeuralNetwork([784, 64, 10], 1e-4)
 
 data_raw = read_data_sets('./data')
 data_training = np.array(data_raw.__dict__['train'].__dict__['_images'], dtype=np.float128)
@@ -36,17 +37,28 @@ for x in range(len(data_result)):
     result.append(zeros)
 result = np.array(result)
 
+# x = []
+# y = []
 s1 = time.time()
-for x in range(EPOCHS):
+for e in range(EPOCHS):
     nn.train(data_training, result)
+
+    test_training = np.array(data_raw.__dict__['test'].__dict__['_images'], dtype=np.float128)
+    test_result = np.array(data_raw.__dict__['test'].__dict__['_labels'], dtype=np.float128)
+
+    prediction = nn.predict(data_raw.__dict__['test'].__dict__['_images'])
+    acc = 0
+    for i in range(len(prediction)):
+        acc += (np.argmax(prediction[i]) == data_raw.__dict__['test'].__dict__['_labels'][i])
+    print(acc * 100 /len(prediction))
+    # x.append(e)
+    # y.append(acc * 100 /len(prediction))
+
+# plt.plot(x, y)
+# plt.show()
 s2 = time.time()
 print(f's3 = {(s2 - s1)}')
 
-prediction = nn.predict(data_raw.__dict__['test'].__dict__['_images'])
-acc = 0
-for x in range(len(prediction)):
-    acc += (np.argmax(prediction[x]) == data_raw.__dict__['train'].__dict__['_labels'][x])
-print(acc * 100 /len(prediction))
 
 if is_from_file:
     # Serialization
