@@ -138,6 +138,9 @@ $
 Now we traverse backwards, but why? Well to train a NN we have to modify the numbers in the NN, first how do we know which direction the numbers need to go? Well we have the test data and what we expect it to be so we can calculate how close the AI was to the right answer. Then we use some calculas and move backwards adjusting the numbers along the way.
 
 
+## Problems
+It seems that the ai converges works for XOR but not mnist have tried different activation functions.
+
 ## References
 <a id="1">[1]</a> 
 doug (https://stats.stackexchange.com/users/438/doug), How to choose the number of hidden layers and nodes in a feedforward neural network?, URL (version: 2018-07-22): https://stats.stackexchange.com/q/1097
