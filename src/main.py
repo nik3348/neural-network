@@ -24,16 +24,16 @@ result = np.array([0, 1, 0, 1], dtype=np.float128)
 for x in range(EPOCHS):
     nn.train(data, result)
 
-prediction = nn.predict(np.array([[0, 0]]))
+prediction = nn.predict(np.array([[0, 0]], dtype=np.float128))
 print(prediction)
 
-prediction = nn.predict(np.array([[1, 0]]))
+prediction = nn.predict(np.array([[1, 0]], dtype=np.float128))
 print(prediction)
 
-prediction = nn.predict(np.array([[0, 1]]))
+prediction = nn.predict(np.array([[0, 1]], dtype=np.float128))
 print(prediction)
 
-prediction = nn.predict(np.array([[1, 1]]))
+prediction = nn.predict(np.array([[1, 1]], dtype=np.float128))
 print(prediction)
 
 if is_from_file:

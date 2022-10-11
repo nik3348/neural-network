@@ -43,7 +43,7 @@ for x in range(EPOCHS):
 
 accuracy = 0
 for i in range(len(praw)):
-    prediction = nn.predict(np.array([praw[i]]))
+    prediction = nn.predict(np.array([praw[i]], dtype=np.float128))
     accuracy += np.argmax(prediction) == ptarget[i]
 print((accuracy/len(praw))*100)
 

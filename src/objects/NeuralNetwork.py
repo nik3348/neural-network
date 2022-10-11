@@ -15,8 +15,8 @@ class NeuralNetwork:
             raise Exception('Data and prediction must have the same number of rows')
 
         for i in range(len(data)):
-            input = np.array([data[i]])
-            target = np.array([prediction[i]])
+            input = np.array([data[i]], dtype=np.float128)
+            target = np.array([prediction[i]], dtype=np.float128)
 
             for x in range(len(self.layers)):
                 has_softmax = (not self.binary_regression) and (x == (len(self.layers) - 1))

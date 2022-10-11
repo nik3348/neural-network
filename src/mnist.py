@@ -7,7 +7,7 @@ from input_data import read_data_sets, plot_image
 
 
 MODEL = 'mnist.nn'
-EPOCHS = 3
+EPOCHS = 1
 is_from_file = True
 NEW = not is_from_file
 
@@ -35,7 +35,7 @@ for x in range(len(data_result)):
     zeros = np.zeros(10)
     zeros[int(data_result[x])] = 1
     result.append(zeros)
-result = np.array(result)
+result = np.array(result, dtype=np.float128)
 
 # x = []
 # y = []
